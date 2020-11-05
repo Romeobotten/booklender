@@ -16,6 +16,7 @@ public class Book {
     public Book() {
     }
 
+    // needed to add id temporary to run tests
     public Book(int bookId, String title, int maxLoanDays, BigDecimal finePerDay, String description) {
         this.bookId = bookId;
         this.title = title;

@@ -13,6 +13,7 @@ public class LibraryUser {
     public LibraryUser() {
     }
 
+    // needed to add id temporary to run tests
     public LibraryUser(int userId, LocalDate regDate, String name, String email) {
         this.userId = userId;
         this.regDate = regDate;

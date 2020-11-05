@@ -16,6 +16,7 @@ public class Loan {
     public Loan() {
     }
 
+    // needed to add id temporary to run tests
     public Loan(long loanId, LibraryUser loanTaker, Book book, LocalDate loanDate, boolean terminated) {
         this.loanId = loanId;
         this.loanTaker = loanTaker;
@@ -57,12 +58,6 @@ public class Loan {
         if(isOverdue()) {
             fine = BigDecimal.valueOf(Period.between(getLoanDate().plusDays(book.getMaxLoanDays()),
                     (LocalDate.now())).getDays()).multiply(book.getFinePerDay());
-//            System.out.println((getLoanDate().plusDays(book.getMaxLoanDays())));
-//            System.out.println(Period.between(getLoanDate().plusDays(book.getMaxLoanDays()),
-//                    (LocalDate.now())).getDays());
-//
-//            System.out.println(book.getFinePerDay());
-
         }
         return fine;
     }
