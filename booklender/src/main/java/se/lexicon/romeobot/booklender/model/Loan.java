@@ -2,6 +2,7 @@ package se.lexicon.romeobot.booklender.model;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.Objects;
 
 public class Loan {
@@ -46,7 +47,7 @@ public class Loan {
     public boolean isOverdue() {
         if(isTerminated()){
             return false;
-        } else if(getLoanDate().plusDays(book.getMaxLoanDays()).isAfter(LocalDate.now())) {
+        } else if(getLoanDate().plusDays(book.getMaxLoanDays()).isBefore(LocalDate.now())) {
             return true;
         } else return false;
     }
@@ -54,7 +55,14 @@ public class Loan {
     public BigDecimal getFine() {
         BigDecimal fine = new BigDecimal("0");
         if(isOverdue()) {
-            fine = BigDecimal.valueOf(getLoanDate().plusDays(book.getMaxLoanDays()).compareTo(LocalDate.now())).multiply(book.getFinePerDay());
+            fine = BigDecimal.valueOf(Period.between(getLoanDate().plusDays(book.getMaxLoanDays()),
+                    (LocalDate.now())).getDays()).multiply(book.getFinePerDay());
+//            System.out.println((getLoanDate().plusDays(book.getMaxLoanDays())));
+//            System.out.println(Period.between(getLoanDate().plusDays(book.getMaxLoanDays()),
+//                    (LocalDate.now())).getDays());
+//
+//            System.out.println(book.getFinePerDay());
+
         }
         return fine;
     }
