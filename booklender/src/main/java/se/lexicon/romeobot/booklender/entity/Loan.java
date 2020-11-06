@@ -1,28 +1,53 @@
-package se.lexicon.romeobot.booklender.model;
+package se.lexicon.romeobot.booklender.entity;
+
+import javax.persistence.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.Objects;
 
+@Entity
 public class Loan {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long loanId;
+
+    @ManyToOne(cascade = {CascadeType.PERSIST,
+            CascadeType.MERGE,
+            CascadeType.DETACH,
+            CascadeType.REFRESH}
+    )
     private LibraryUser loanTaker;
+
+    @ManyToOne(cascade = {CascadeType.PERSIST,
+            CascadeType.MERGE,
+            CascadeType.DETACH,
+            CascadeType.REFRESH}
+    )
     private Book book;
+
     private LocalDate loanDate;
-    private boolean terminated;
+    private boolean terminate;    // Took me a while to change this
 
     public Loan() {
     }
 
+    public Loan(LibraryUser loanTaker, Book book, LocalDate loanDate, boolean terminate) {
+        this.loanTaker = loanTaker;
+        this.book = book;
+        this.loanDate = loanDate;
+        this.terminate = terminate;
+    }
+
     // needed to add id temporary to run tests
-    public Loan(long loanId, LibraryUser loanTaker, Book book, LocalDate loanDate, boolean terminated) {
+    public Loan(long loanId, LibraryUser loanTaker, Book book, LocalDate loanDate, boolean terminate) {
         this.loanId = loanId;
         this.loanTaker = loanTaker;
         this.book = book;
         this.loanDate = loanDate;
-        this.terminated = terminated;
+        this.terminate = terminate;
     }
 
     public long getloanId() {
@@ -46,7 +71,7 @@ public class Loan {
     }
 
     public boolean isOverdue() {
-        if(isTerminated()){
+        if(isTerminate()){
             return false;
         } else if(getLoanDate().plusDays(book.getMaxLoanDays()).isBefore(LocalDate.now())) {
             return true;
@@ -66,12 +91,12 @@ public class Loan {
         return loanDate;
     }
 
-    public boolean isTerminated() {
-        return terminated;
+    public boolean isTerminate() {
+        return terminate;
     }
 
-    public void setTerminated(boolean terminated) {
-        this.terminated = terminated;
+    public void setTerminate(boolean terminate) {
+        this.terminate = terminate;
     }
 
     public boolean extendloan(int days) {
@@ -101,7 +126,7 @@ public class Loan {
                 ", loanTaker=" + loanTaker +
                 ", book=" + book +
                 ", loanDate=" + loanDate +
-                ", terminated=" + terminated +
+                ", terminate=" + terminate +
                 '}';
     }
 }

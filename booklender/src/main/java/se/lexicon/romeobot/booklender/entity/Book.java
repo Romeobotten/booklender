@@ -1,11 +1,17 @@
-package se.lexicon.romeobot.booklender.model;
+package se.lexicon.romeobot.booklender.entity;
+
+import javax.persistence.*;
 
 import java.math.BigDecimal;
 import java.util.Objects;
 
+@Entity
 public class Book {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int bookId;
+
     private String title;
     private boolean available;
     private boolean reserved;
@@ -14,6 +20,15 @@ public class Book {
     private String description;
 
     public Book() {
+    }
+
+    public Book(String title, int maxLoanDays, BigDecimal finePerDay, String description) {
+        this.title = title;
+        this.available = true;
+        this.reserved = false;
+        this.maxLoanDays = maxLoanDays;
+        this.finePerDay = finePerDay;
+        this.description = description;
     }
 
     // needed to add id temporary to run tests

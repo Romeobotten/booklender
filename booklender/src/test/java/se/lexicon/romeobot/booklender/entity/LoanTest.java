@@ -1,4 +1,4 @@
-package se.lexicon.romeobot.booklender.model;
+package se.lexicon.romeobot.booklender.entity;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -38,7 +38,7 @@ public class LoanTest {
     public void test2() {
 
         assertFalse(testLoan.isOverdue());
-        assertFalse(testLoan.isTerminated());
+        assertFalse(testLoan.isTerminate());
     }
 
     @Test
@@ -60,7 +60,7 @@ public class LoanTest {
     public void test5() {
 
         testLoan2 = new Loan(1002, testUser, testBook, LocalDate.now().minusMonths(1), false);
-        testLoan2.setTerminated(true);
+        testLoan2.setTerminate(true);
 
         assertFalse(testLoan2.isOverdue());
         assertEquals(testLoan2.getFine(), BigDecimal.valueOf(0));

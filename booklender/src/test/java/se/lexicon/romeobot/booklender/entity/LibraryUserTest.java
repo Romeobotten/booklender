@@ -1,4 +1,4 @@
-package se.lexicon.romeobot.booklender.model;
+package se.lexicon.romeobot.booklender.entity;
 
 import java.time.LocalDate;
 
