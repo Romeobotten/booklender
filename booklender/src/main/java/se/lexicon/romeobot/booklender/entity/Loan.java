@@ -81,8 +81,8 @@ public class Loan {
     public BigDecimal getFine() {
         BigDecimal fine = new BigDecimal("0");
         if(isOverdue()) {
-            fine = BigDecimal.valueOf(Period.between(getLoanDate().plusDays(book.getMaxLoanDays()),
-                    (LocalDate.now())).getDays()).multiply(book.getFinePerDay());
+//            fine = BigDecimal.valueOf(Period.between(getLoanDate().plusDays(book.getMaxLoanDays()),
+//                    (LocalDate.now())).getDays()).multiply(book.getFinePerDay());
         }
         return fine;
     }
