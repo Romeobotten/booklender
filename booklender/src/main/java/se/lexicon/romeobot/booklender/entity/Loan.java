@@ -50,7 +50,7 @@ public class Loan {
         this.terminate = terminate;
     }
 
-    public long getloanId() {
+    public long getLoanId() {
         return loanId;
     }
 
