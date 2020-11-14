@@ -22,53 +22,78 @@ public class LoanRepositoryTest {
     @Autowired
     LoanRepository loanRepository;
 
-//    @Autowired
-//    LibraryUserRepository libraryUserRepository;
-//
-//    @Autowired
-//    BookRepository bookRepository;
+    @Autowired
+    LibraryUserRepository libraryUserRepository;
 
-    Book testBook;
-    LibraryUser testUser;
-    Loan testLoan;
+    @Autowired
+    BookRepository bookRepository;
+
+//    Book testBook;
+//    LibraryUser testUser;
+//    Loan testLoan;
+    LibraryUser testUser = new LibraryUser(LocalDate.now(), "Ada Lovelace", "ada@lexicon.se");
+    Book testBook = new Book("Game of Toads", 7, BigDecimal.ONE, "Not a book about frogs");
+    Loan testLoan = new Loan(testUser, testBook, LocalDate.now(),false);
 
     @BeforeEach
     public void setUp() {
-        testUser = new LibraryUser(LocalDate.now(), "Ada Lovelace", "ada@lexicon.se");
-        testBook = new Book("Game of Toads",true,false, 7, BigDecimal.ONE, "Not a book about frogs");
-        testLoan = new Loan(testUser, testBook, LocalDate.now(),false);
-        System.out.println("testUser?");
+
+//        System.out.println("testUser?");
 //        libraryUserRepository.save(testUser);
 //        bookRepository.save(testBook);
         loanRepository.save(testLoan);
+
     }
 
-//    @AfterEach
-//    void tearDown() {
-//    }
+    @AfterEach
+    public void tearDown() {
+//        libraryUserRepository.delete(testUser);
+//        bookRepository.delete(testBook);
+//        loanRepository.delete(testLoan);
+
+    }
 
     @Test
     public void Test1() {
+        System.out.println(testUser);
 
-        assertEquals(loanRepository.findById((long) 1).toString(), "Optional[" + testLoan.toString() + "]");
+        assertEquals(loanRepository.findById((long)1).toString(), "Optional[" + testLoan.toString() + "]");
     }
 
     @Test
     public void Test2() {
-        List<Loan> testUserList = (List<Loan>) loanRepository.findAll();
-//        System.out.println(testUserList);
+//        List<Loan> testLoanList = (List<Loan>) loanRepository.findAll();
+        System.out.println((List<Loan>) loanRepository.findAll());
 
         assertTrue(((List<Loan>) loanRepository.findAll()).size() == 1);
     }
 
     @Test
     public void Test3() {
-
+        System.out.println(testUser);
         loanRepository.delete(testLoan);
 //        System.out.println(testUserList);
 
         assertTrue(((List<Loan>) loanRepository.findAll()).size() == 0);
     }
 
+    @Test
+    public void Test4() {
+        System.out.println(testUser);
+        assertTrue(((List<Loan>) loanRepository.findAllByLoanTakerUserId(4)).size() == 1);
+    }
+
+    @Test
+    public void Test5() {
+        System.out.println(testUser);
+        System.out.println(testBook);
+        assertTrue(((List<Loan>) loanRepository.findAllByBookBookId(5)).size() == 1);
+    }
+
+    @Test
+    public void Test6() {
+
+        assertEquals(loanRepository.findAllByTerminate(false).toString(), "[" + testLoan + "]");
+    }
 }
 

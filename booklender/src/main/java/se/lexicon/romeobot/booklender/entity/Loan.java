@@ -29,6 +29,7 @@ public class Loan {
     private Book book;
 
     private LocalDate loanDate;
+
     private boolean terminate;    // Took me a while to change this
 
     public Loan() {
