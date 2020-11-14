@@ -55,4 +55,22 @@ public class BookRepositoryTest {
         assertTrue(((List<Book>) bookRepository.findAll()).size() == 0);
     }
 
+    @Test
+    public void test4() {
+
+        assertTrue(((List<Book>) bookRepository.findAllByReserved(false)).size() == 1);
+    }
+
+    @Test
+    public void test5() {
+
+        assertTrue(((List<Book>) bookRepository.findAllByAvailable(true)).size() == 1);
+    }
+
+    @Test
+    public void test6() {
+
+        assertEquals(bookRepository.findByTitle("Game of Toads"),testBook);
+    }
+
 }

@@ -25,7 +25,7 @@ public class LibraryUserRepositoryTest {
     @BeforeEach
     public void setUp() {
         testUser = new LibraryUser(LocalDate.now(), "Ada Lovelace", "ada@lexicon.se");
-        System.out.println("saving testUser in BeforeEach");
+//        System.out.println("saving testUser in BeforeEach");
         libraryUserRepository.save(testUser);
     }
 
@@ -53,6 +53,12 @@ public class LibraryUserRepositoryTest {
         libraryUserRepository.delete(testUser);
 
         assertTrue(((List<LibraryUser>) libraryUserRepository.findAll()).size() == 0);
+    }
+
+    @Test
+    public void test4() {
+
+        assertEquals(libraryUserRepository.findByEmailIgnoreCase("ada@lexicon.se"), testUser);
     }
 
 }

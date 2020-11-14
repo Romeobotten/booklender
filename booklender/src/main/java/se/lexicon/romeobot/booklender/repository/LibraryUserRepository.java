@@ -5,4 +5,5 @@ import se.lexicon.romeobot.booklender.entity.LibraryUser;
 
 public interface LibraryUserRepository extends CrudRepository<LibraryUser, Integer> {
 
+    LibraryUser findByEmailIgnoreCase(String email);
 }
