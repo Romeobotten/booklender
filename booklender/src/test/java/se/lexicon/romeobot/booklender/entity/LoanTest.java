@@ -12,7 +12,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class LoanTest {
 
-
     LibraryUser testUser;
     LibraryUser testUser2;
     Book testBook;
@@ -90,8 +89,8 @@ public class LoanTest {
     @Test
     public void test8() {
 
-        assertEquals(testLoan.toString(), "Loan{id=1001, loanTaker=LibraryUser{userId=1, regDate=2020-11-05, name='Ada Lovelace', email='ada@lexicon.se'}, " +
-                "book=Book{bookId=42, title='Hitchikers Guide', available=true, reserved=false, maxLoanDays=14, finePerDay=0.5, description='Hitchikers guide to the Galaxy'}, loanDate=2020-10-26, terminated=false}");
+        assertEquals(testLoan.toString(), "Loan{id=1001, loanTaker=LibraryUser{userId=1, regDate=2020-11-15, name='Ada Lovelace', email='ada@lexicon.se'}, " +
+                "book=Book{bookId=42, title='Hitchikers Guide', available=true, reserved=false, maxLoanDays=14, finePerDay=0.5, description='Hitchikers guide to the Galaxy'}, loanDate=2020-11-05, terminate=false}");
     }
 
 }

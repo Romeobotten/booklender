@@ -42,14 +42,14 @@ public class Book {
         this.description = description;
     }
 
-    public Book(String title, boolean available, boolean reserved, int maxLoanDays, BigDecimal finePerDay, String description) {
-        this.title = title;
-        this.available = available;
-        this.reserved = reserved;
-        this.maxLoanDays = maxLoanDays;
-        this.finePerDay = finePerDay;
-        this.description = description;
-    }
+//    public Book(String title, boolean available, boolean reserved, int maxLoanDays, BigDecimal finePerDay, String description) {
+//        this.title = title;
+//        this.available = available;
+//        this.reserved = reserved;
+//        this.maxLoanDays = maxLoanDays;
+//        this.finePerDay = finePerDay;
+//        this.description = description;
+//    }
 
     public int getBookId() {
         return bookId;

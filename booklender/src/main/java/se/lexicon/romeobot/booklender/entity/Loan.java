@@ -72,9 +72,7 @@ public class Loan {
     }
 
     public boolean isOverdue() {
-        if(isTerminate()){
-            return false;
-        } else if(getLoanDate().plusDays(book.getMaxLoanDays()).isBefore(LocalDate.now())) {
+        if(getLoanDate().plusDays(book.getMaxLoanDays()).isBefore(LocalDate.now()) && !isTerminate()) {
             return true;
         } else return false;
     }
@@ -82,8 +80,8 @@ public class Loan {
     public BigDecimal getFine() {
         BigDecimal fine = new BigDecimal("0");
         if(isOverdue()) {
-//            fine = BigDecimal.valueOf(Period.between(getLoanDate().plusDays(book.getMaxLoanDays()),
-//                    (LocalDate.now())).getDays()).multiply(book.getFinePerDay());
+            fine = BigDecimal.valueOf(Period.between(getLoanDate().plusDays(book.getMaxLoanDays()),
+                    (LocalDate.now())).getDays()).multiply(book.getFinePerDay());
         }
         return fine;
     }

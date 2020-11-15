@@ -3,7 +3,6 @@ package se.lexicon.romeobot.booklender.entity;
 import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.*;
-// import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -52,7 +51,7 @@ public class LibraryUserTest {
     @Test
     public void test5() {
 
-        assertEquals(testUser.toString(), "LibraryUser{userId=1, regDate=2020-11-05, name='Ada Lovelace', email='ada@lexicon.se'}");
+        assertEquals(testUser.toString(), "LibraryUser{userId=1, regDate=2020-11-15, name='Ada Lovelace', email='ada@lexicon.se'}");
     }
 
 }
